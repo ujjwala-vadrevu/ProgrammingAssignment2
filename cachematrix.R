@@ -39,11 +39,15 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         
         m <- x$getInv()
+         # check if m (the inverse of the matrix is precalculated)
         if(!is.null(m)) {
+               #if precalculated, just fetch the cached data
                 message("getting cached inverse")
                 return(m)
         }
+        #if not pre-calculated, get the matrix x
         data <- x$get()
+        #Solve for the inverse and assign it to m
         m <- solve(data, ...)
         x$setInv(m)
         m
